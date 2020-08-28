@@ -22,12 +22,13 @@ class AHP:
                 if np.abs(input_matrix[i, j] * input_matrix[j, i] - 1) > 1e-7:
                     raise ValueError('不是反互对称矩阵')
 
-        eigenvalues, eigenvectors = np.linalg.eig(input_matrix)
+        eigenvalues, eigenvectors = np.linalg.eig(input_matrix) # 判断矩阵的特征值和特征向量，eigenvalues特征值，eigenvectors特征向量
+        # 包含 实部和虚部
 
-        max_idx = np.argmax(eigenvalues)
-        max_eigen = eigenvalues[max_idx].real
-        eigen = eigenvectors[:, max_idx].real
-        eigen = eigen / eigen.sum()
+        max_idx = np.argmax(eigenvalues) # numpy.argmax(array, axis) 用于返回一个numpy数组中最大值的索引值。
+        max_eigen = eigenvalues[max_idx].real # 最大特征值
+        eigen = eigenvectors[:, max_idx].real # 对应特征向量
+        eigen = eigen / eigen.sum()  #归一化
 
         if n > 9:
             CR = None
@@ -76,6 +77,12 @@ if __name__ == '__main__':
                          [1 / 5, 1 / 3, 2, 1, 1],
                          [1 / 5, 1 / 3, 3, 1, 1]])
 
+    f = np.array([[1, 4, 1 / 2], [1 / 4, 1, 1 / 4], [2, 4, 1]])
+    bbb1=np.array([[1, 1 / 3, 1 / 8], [3, 1, 1 / 3], [8, 3, 1]])
+    bbb2=np.array([[1, 1, 3], [1, 1, 3], [1 / 3, 1 / 3, 1]])
+    bbb3=np.array([[1, 4, 1 / 2], [1 / 4, 1, 1 / 4], [2, 4, 1]])
+    b = [bbb1, bbb2, bbb3]
+    
     # 对每个准则，方案优劣排序
     b1 = np.array([[1, 1 / 3, 1 / 8], [3, 1, 1 / 3], [8, 3, 1]])
     b2 = np.array([[1, 2, 5], [1 / 2, 1, 2], [1 / 5, 1 / 2, 1]])
@@ -83,5 +90,7 @@ if __name__ == '__main__':
     b4 = np.array([[1, 3, 4], [1 / 3, 1, 1], [1 / 4, 1, 1]])
     b5 = np.array([[1, 4, 1 / 2], [1 / 4, 1, 1 / 4], [2, 4, 1]])
 
-    b = [b1, b2, b3, b4, b5]
-    a = AHP(criteria, b).run()
+    # b = [b1, b2, b3, b4, b5]
+    
+    # a = AHP(criteria, b).run()
+    a = AHP(f, b).run()

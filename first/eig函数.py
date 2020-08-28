@@ -34,7 +34,9 @@ class AHP:
             warnings.warn('无法判断一致性')
         else:
             CI = (max_eigen - n) / (n - 1)
-            CR = CI / self.RI[n]
+            print('n：',n)
+            print('ci：',CI,'RI 值选取：',self.RI[n-1])
+            CR = CI / self.RI[n-1]
         return max_eigen, CR, eigen
 
     def run(self):

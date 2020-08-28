@@ -3,6 +3,7 @@
 # 代码来源 https://www.cnblogs.com/yhll/p/9967726.html
 # 解析 https://blog.csdn.net/Trisyp/article/details/106017533?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.channel_param
 # 
+# 广东省土地利用变化与土地生态安全评价研究_黄翠婷
 # 求特征向量较为常见的的计算方法有特征向量法、方根法、正规化法以及和积法求和法。
 # 第一种方法则是严格计算特征向量的方法，后三种方法是近似方法，使用非常简便，人们只要使用小型计算器并保证足够精确度的条件下就可应用。下面简单介绍一下本文章接下来将运用到的求和法的基本计算步骤
 # 
@@ -28,6 +29,7 @@ def get_w(array):
     max_max = sum(AW / (row * w))
     print('准则层：最大特征值', max_max)
     CI = (max_max - row) / (row - 1)
+    print('CI ', CI)
     CR = CI / RI_dict[row]
     print('CR：', CR)
     if CR < 0.1:
